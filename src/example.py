@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     try:
         from ens160.retry_i2c import SMBusRetryingI2C
-        dev = Driver(SMBusRetryingI2C(0x52, 1))
+        dev = Driver(SMBusRetryingI2C(0x53, 1))
     except ModuleNotFoundError as e:
         print("Could not find SMBus, using MOCK interface")
         from ens160.mock import MockENS160
