@@ -1,11 +1,11 @@
 """Mock ENS160 wrapper."""
 
-from .enumerations import Commands, Registers, OpModes
-from .status import Status
-from .icommunication import ICommunication
+from . import Commands, Registers, OpModes, Status, ICommunication
+
 
 class MockENS160(ICommunication):
     """Limited simulation of the ENS160"""
+
     def __init__(
         self,
     ):
@@ -14,17 +14,16 @@ class MockENS160(ICommunication):
         self.__status.power_on = True
         self.__registers = {}
         self.__registers[Registers.PART_ID] = 0x60
-        self.__registers[Registers.PART_ID+1] = 0x01
+        self.__registers[Registers.PART_ID + 1] = 0x01
         self.__registers[Registers.DATA_AQI] = 1
         self.__registers[Registers.DATA_ECO2] = 0
-        self.__registers[Registers.DATA_ECO2+1] = 0
+        self.__registers[Registers.DATA_ECO2 + 1] = 0
         self.__registers[Registers.DATA_TVOC] = 0
-        self.__registers[Registers.DATA_TVOC+1] = 0
+        self.__registers[Registers.DATA_TVOC + 1] = 0
         self.__registers[Registers.GRP_READ4] = 0
         self.__registers[Registers.GRP_READ5] = 0
         self.__registers[Registers.GRP_READ6] = 0
         self.__delay = 5
-
 
     def __handle_command(self, command: int):
         if command == Commands.GET_FW_VER:
@@ -42,9 +41,9 @@ class MockENS160(ICommunication):
                 self.__status.new_data = 1
                 self.__registers[Registers.DATA_AQI] = 1
                 self.__registers[Registers.DATA_ECO2] = 50
-                self.__registers[Registers.DATA_ECO2+1] = 0
+                self.__registers[Registers.DATA_ECO2 + 1] = 0
                 self.__registers[Registers.DATA_TVOC] = 100
-                self.__registers[Registers.DATA_TVOC+1] = 0
+                self.__registers[Registers.DATA_TVOC + 1] = 0
                 self.__delay = 5
 
         return self.__status.to_status()
@@ -55,10 +54,10 @@ class MockENS160(ICommunication):
         elif mode in [OpModes.DEEP_SLEEP, OpModes.STANDARD, OpModes.IDLE]:
             self.__op_mode = mode
 
-    def __read_register(self, register: Registers, size:int):
+    def __read_register(self, register: Registers, size: int):
         results = []
         for i in range(size):
-            results.append(self.__registers[register+i])
+            results.append(self.__registers[register + i])
 
         # clear the flag.
         if register in [Registers.DATA_AQI, Registers.DATA_ECO2, Registers.DATA_TVOC]:

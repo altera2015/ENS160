@@ -5,17 +5,19 @@
 import sys
 from time import sleep
 
-from ens160.driver import Driver
-from ens160.enumerations import OpModes
+from ens160 import Driver
+from ens160 import OpModes
 
 if __name__ == "__main__":
-
     try:
-        from ens160.retry_i2c import SMBusRetryingI2C
+        from smbus2 import SMBus
+        from ens160.i2c import SMBusRetryingI2C
+
         dev = Driver(SMBusRetryingI2C(0x53, 1))
     except ModuleNotFoundError as e:
         print("Could not find SMBus, using MOCK interface")
         from ens160.mock import MockENS160
+
         dev = Driver(MockENS160())
 
     dev.init()

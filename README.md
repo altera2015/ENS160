@@ -1,5 +1,18 @@
 # ENS160
-ENS160 Python library, tested on Raspberry Pi 5 with Python 3.12.
+ENS160 Python library.
+
+[Datasheet](https://www.sciosense.com/wp-content/uploads/2023/12/ENS160-Datasheet.pdf)
+
+This code was tested on a Raspberry Pi 5 at 100kHz I2C clock.
+
+The I2C code is abstracted from the sensor handling and
+other communication methods could be added.
+
+Tested with Python 3.12
+
+# Documentation
+
+TBD
 
 # Example
 
@@ -9,10 +22,9 @@ See [example.py](https://github.com/altera2015/ENS160/blob/main/src/example.py)
 import sys
 from time import sleep
 
-from ens160.driver import Driver
-from ens160.enumerations import OpModes
+from ens160 import Driver, OpModes
 
-from ens160.retry_i2c import SMBusRetryingI2C
+from ens160.i2c import SMBusRetryingI2C
 dev = Driver(SMBusRetryingI2C(0x53, 1))
 
 dev.init()
@@ -42,4 +54,18 @@ while True:
     else:
         sleep(0.1)
 
+```
+
+
+# Build Packages
+
+```sh
+python -m build
+```
+
+# Build Documentation
+
+```sh
+cd src
+python -m pdoc ens160 --no-show-source -o ../docs
 ```

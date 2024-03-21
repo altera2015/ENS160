@@ -1,10 +1,9 @@
 """Interface for communications classes"""
 
-from .enumerations import Registers
+from . import Registers
+
 
 class ICommunication:
-    """Interface class for Communication classes."""
-
     def write(self, register: Registers, data: list[int] | int):
         """Write byte data to register."""
         raise NotImplementedError

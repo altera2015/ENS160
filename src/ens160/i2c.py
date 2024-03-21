@@ -1,13 +1,24 @@
 """I2C Retry wrapper."""
 
 from time import sleep
+from sys import exit
 
-from smbus2 import SMBus
-from .enumerations import Registers
-from .icommunication import ICommunication
+try:
+    from smbus2 import SMBus
+except ModuleNotFoundError as e:
+    NOT_FOUND = True
+
+    def SMBus(interface: int):
+        print("Warning smbus2 not found, please install it")
+        exit(-1)
+
+
+from . import Registers, ICommunication
+
 
 class SMBusRetryingI2C(ICommunication):
     """I2C Helper class that automatically retries."""
+
     def __init__(
         self,
         address: int,
