@@ -12,7 +12,9 @@ from time import sleep
 from ens160.driver import Driver
 from ens160.enumerations import OpModes
 
-dev = Driver(0x53)
+from ens160.retry_i2c import SMBusRetryingI2C
+dev = Driver(SMBusRetryingI2C(0x53, 1))
+
 dev.init()
 part_id = dev.get_part_id()
 if part_id != Driver.PART_ID:
@@ -28,7 +30,7 @@ dev.set_temp_compensation_fahrenheit(72.5)
 print(dev.get_device_status())
 
 dev.set_operating_mode(OpModes.STANDARD)
-print(dev.get_operating_mode())
+print("Operating Mode: ", dev.get_operating_mode())
 
 while True:
     status = dev.get_device_status()
@@ -38,5 +40,6 @@ while True:
             f"AQI={dev.get_aqi()}, eCO2={dev.get_eco2()}ppm, TVOC={dev.get_tvoc()}ppb"
         )
     else:
-        sleep(1)
+        sleep(0.1)
+
 ```
