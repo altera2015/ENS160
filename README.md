@@ -12,7 +12,13 @@ Tested with Python 3.12
 
 # Documentation
 
-TBD
+The detailed API documentation can be [found here](https://altera2015.github.io/ENS160/ens160.html).
+
+# Install
+
+```sh
+pip install https://github.com/altera2015/ENS160/archive/refs/heads/main.zip
+```
 
 # Example
 
