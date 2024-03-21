@@ -17,7 +17,7 @@ The detailed API documentation can be [found here](https://altera2015.github.io/
 # Install
 
 ```sh
-pip install https://github.com/altera2015/ENS160/archive/refs/heads/main.zip
+pip install ens160
 ```
 
 # Example
@@ -62,16 +62,3 @@ while True:
 
 ```
 
-
-# Build Packages
-
-```sh
-python -m build
-```
-
-# Build Documentation
-
-```sh
-cd src
-python -m pdoc ens160 --no-show-source -o ../docs
-```
