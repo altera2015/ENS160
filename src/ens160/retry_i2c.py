@@ -2,7 +2,7 @@
 
 from time import sleep
 
-import smbus2
+from smbus2 import SMBus
 from .enumerations import Registers
 
 
