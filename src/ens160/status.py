@@ -20,3 +20,7 @@ class Status:
     def __str__(self):
         # pylint: disable=line-too-long
         return f"flags={self.flags}, warm_up={self.warm_up}, inital_startup={self.inital_startup} power on={self.power_on}, error={self.error}, new data={self.new_data}, new gpr={self.new_gpr}"
+
+    def to_status(self):
+        """Returns the byte value corresponding to the current value of the flags"""
+        return self.new_gpr | self.new_data << 1 | self.flags << 2 | self.error << 6 | self.power_on << 7

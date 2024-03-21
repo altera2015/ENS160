@@ -4,9 +4,9 @@ from time import sleep
 
 from smbus2 import SMBus
 from .enumerations import Registers
+from .icommunication import ICommunication
 
-
-class RetryingI2C:
+class SMBusRetryingI2C(ICommunication):
     """I2C Helper class that automatically retries."""
     def __init__(
         self,
@@ -21,7 +21,7 @@ class RetryingI2C:
         self.__retry_sleep = retry_sleep
 
     def write(self, register: Registers, data: list[int] | int):
-        """Write data to the I2C bu.s"""
+        """Write data to the I2C bus."""
         retries = self.__retries
         while True:
             try:

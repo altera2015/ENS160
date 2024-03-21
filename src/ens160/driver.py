@@ -16,18 +16,17 @@
 #
 
 from time import sleep
-from .retry_i2c import RetryingI2C
 from .enumerations import OpModes, Commands, Registers
 from .status import Status
+from .icommunication import ICommunication
 
 class Driver:
     """ENS160 TOV Sensor driver."""
     PART_ID = 0x160
 
-    def __init__(self, address: int, interface_id: int = 1):
+    def __init__(self, communication: ICommunication):
         """Initialize the driver, possible Addresses: 0x52 or 0x53."""
-        self.i2c = RetryingI2C(address, interface_id)
-        self.address = address
+        self.i2c = communication
 
     def set_operating_mode(self, mode: OpModes):
         """Sets the ENS160 operation mode. Returns True on success."""
