@@ -1,0 +1,4 @@
+[DESIGN]
+max-attributes=10
+max-line-length=100
+min-public-methods=0
