@@ -1,4 +1,7 @@
 """ENS160 example."""
+
+# pylint: skip-file
+
 import sys
 from time import sleep
 
