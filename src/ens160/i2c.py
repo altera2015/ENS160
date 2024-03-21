@@ -1,16 +1,16 @@
 """I2C Retry wrapper."""
 
 from time import sleep
-from sys import exit
+import sys
 
 try:
     from smbus2 import SMBus
 except ModuleNotFoundError as e:
     NOT_FOUND = True
-
+    # pylint: disable-next=invalid-name missing-function-docstring
     def SMBus(interface: int):
-        print("Warning smbus2 not found, please install it")
-        exit(-1)
+        print(f"Warning smbus2 not found, please install it. {interface}")
+        sys.exit(-1)
 
 
 from . import Registers, ICommunication
@@ -41,10 +41,10 @@ class SMBusRetryingI2C(ICommunication):
                 else:
                     self.__i2c.write_i2c_block_data(self.__address, register, data)
                 return
-            except OSError as e:
+            except OSError as error:
                 retries -= 1
                 if retries < 0:
-                    raise e
+                    raise error
                 sleep(self.__retry_sleep)
 
     def read(self, register: Registers, size: int):
@@ -55,8 +55,8 @@ class SMBusRetryingI2C(ICommunication):
                 if size == 1:
                     return self.__i2c.read_byte_data(self.__address, register)
                 return self.__i2c.read_i2c_block_data(self.__address, register, size)
-            except OSError as e:
+            except OSError as error:
                 retries -= 1
                 if retries < 0:
-                    raise e
+                    raise error
                 sleep(self.__retry_sleep)

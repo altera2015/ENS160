@@ -2,7 +2,7 @@
 
 from enum import IntEnum
 
-
+# pylint: disable-next=missing-class-docstring
 class Commands(IntEnum):
     NOP = 0x00
     """No Op."""

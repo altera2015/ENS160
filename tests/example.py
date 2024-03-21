@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
         dev = Driver(SMBusRetryingI2C(0x53, 1))
     except ModuleNotFoundError as e:
-        print("Could not find SMBus, using MOCK interface")
+        print(f"Could not find SMBus, using MOCK interface. Error was: {e}")
         from ens160.mock import MockENS160
 
         dev = Driver(MockENS160())

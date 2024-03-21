@@ -2,9 +2,8 @@
 
 from enum import IntEnum
 
-
+# pylint: disable-next=missing-class-docstring
 class Registers(IntEnum):
-    """ENS160 Register Constants."""
 
     PART_ID = 0x00
     """Device Identity 0x01, 0x60."""

@@ -1,8 +1,8 @@
 """Interface for communications classes"""
 
-from . import Registers
+from .registers import Registers
 
-
+# pylint: disable-next=missing-class-docstring
 class ICommunication:
     def write(self, register: Registers, data: list[int] | int):
         """Write byte data to register."""

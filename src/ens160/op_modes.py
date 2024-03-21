@@ -2,7 +2,7 @@
 
 from enum import IntEnum
 
-
+# pylint: disable-next=missing-class-docstring
 class OpModes(IntEnum):
     DEEP_SLEEP = 0x00
     """only responds to Command OP_MODE write"""

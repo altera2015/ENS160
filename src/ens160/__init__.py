@@ -2,9 +2,9 @@
 .. include:: ../../README.md
 """
 
-from .ICommunication import ICommunication
-from .Commands import Commands
-from .OpModes import OpModes
-from .Registers import Registers
-from .Status import Status
-from .Driver import Driver
+from .icommunication import ICommunication
+from .commands import Commands
+from .op_modes import OpModes
+from .registers import Registers
+from .status import Status
+from .driver import Driver

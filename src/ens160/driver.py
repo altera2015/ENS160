@@ -3,8 +3,12 @@ ENS160 I2C driver
 """
 
 from time import sleep
-from . import OpModes, Commands, Registers, Status, ICommunication
 
+from .commands import Commands
+from .icommunication import ICommunication
+from .op_modes import OpModes
+from .registers import Registers
+from .status import Status
 
 class Driver:
     """ENS160 Sensor class."""
@@ -13,7 +17,7 @@ class Driver:
     """The PART_ID as of the ENS160."""
 
     def __init__(self, communication: ICommunication):
-        """Constructor for the class which takes an `ens160.icommunication.ICommunication` object
+        """Constructor for the class which takes an `ens160.ICommunication` object
         to provide the communications.
 
         This project provides two retry_i2c.SMBusRetryingI2C and ens160.mock.MockENS160. The

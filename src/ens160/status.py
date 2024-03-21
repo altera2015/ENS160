@@ -1,6 +1,6 @@
 """Data Status Structure."""
 
-
+# pylint: disable-next=missing-class-docstring
 class Status:
     def __init__(self, d):
         """Initializes structure from byte value."""
