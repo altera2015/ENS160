@@ -22,7 +22,7 @@ pip install https://github.com/altera2015/ENS160/archive/refs/heads/main.zip
 
 # Example
 
-See [example.py](https://github.com/altera2015/ENS160/blob/main/src/example.py)
+See [example.py](https://github.com/altera2015/ENS160/blob/main/tests/example.py)
 
 ```python
 import sys
